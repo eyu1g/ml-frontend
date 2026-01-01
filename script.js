@@ -1,9 +1,22 @@
 document.getElementById("predictionForm").addEventListener("submit", async function(e) {
     e.preventDefault(); // prevent form refresh
 
-    // Collect all feature inputs
-    const features = Array.from(document.querySelectorAll('input[name="feature"]'))
-        .map(input => Number(input.value));
+    // Collect all features in the order of dataset
+    const features = [
+        Number(document.getElementById("age").value),
+        Number(document.getElementById("sex").value),
+        Number(document.getElementById("cp").value),
+        Number(document.getElementById("trestbps").value),
+        Number(document.getElementById("chol").value),
+        Number(document.getElementById("fbs").value),
+        Number(document.getElementById("restecg").value),
+        Number(document.getElementById("thalach").value),
+        Number(document.getElementById("exang").value),
+        Number(document.getElementById("oldpeak").value),
+        Number(document.getElementById("slope").value),
+        Number(document.getElementById("ca").value),
+        Number(document.getElementById("thal").value)
+    ];
 
     const model = document.getElementById("model").value;
 
