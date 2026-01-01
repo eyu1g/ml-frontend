@@ -1,19 +1,21 @@
 document.getElementById("predictBtn").addEventListener("click", async function() {
-    const features = document.getElementById("features").value;
+    const features = document.getElementById("features").value
+        .split(",")
+        .map(Number);  // convert comma-separated input to numbers
     const model = document.getElementById("model").value;
 
-    if (!features) {
+    if (!features || features.length === 0) {
         alert("Please enter the features!");
         return;
     }
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/predict", {
+        const response = await fetch("https://ml-fastapi-deployment-6uga.onrender.com/predict", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ model, features })
+            body: JSON.stringify({ model, features })  // send features as array
         });
 
         if (!response.ok) {
